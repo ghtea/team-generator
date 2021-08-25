@@ -1,7 +1,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen} from './screen/Home';
+import {ResultsScreen} from './screen/Results';
 
 // import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -10,7 +11,7 @@ export type AppProps = {
   baseEnthusiasmLevel?: number;
 };
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App: React.FunctionComponent<AppProps> = () => {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -21,9 +22,18 @@ const App: React.FunctionComponent<AppProps> = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="home"
+          component={HomeScreen}
+          options={{title: 'Home'}}
+        />
+        <Tab.Screen
+          name="results"
+          component={ResultsScreen}
+          options={{title: 'Results'}}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
